@@ -1,0 +1,26 @@
+# Keil 编译产物
+Objects/
+Listings/
+MDK-ARM/*/Objects/
+MDK-ARM/*/Listings/
+*.o
+*.d
+*.axf
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+*.crf
+*.dep
+*.lnp
+*.htm
+*.build_log.htm
+*.uvguix.*
+*.uvoptx.bak
+RTE/_*/
+
+# 编辑器 / 系统
+.vscode/
+Thumbs.db
+desktop.ini
