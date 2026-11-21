@@ -44,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile uint32_t msCnt = 0;
+volatile uint32_t Time = 0;
 uint32_t last = 0;
 /* USER CODE END PV */
 
@@ -100,10 +100,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-     if(msCnt - last >= 500) 
+     if(Time - last >= 500) 
     {
-        HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-        last = msCnt;
+        HAL_GPIO_TogglePin(GPIOA, LED_Pin);
+        last = Time;
     }
 
   }
@@ -152,8 +152,9 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-    if (htim->Instance == TIM2) {
-        msCnt++;
+    if (htim->Instance == TIM2) 
+    {
+      Time++;
     }
 }
 /* USER CODE END 4 */
