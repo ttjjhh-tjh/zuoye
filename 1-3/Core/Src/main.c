@@ -44,9 +44,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile uint32_t msCnt = 0; // Counter for TIM2
-uint32_t lastKeyTime = 0; // Last time the key was pressed
-uint8_t keyFlag = 0; // Flag to indicate key press
+volatile uint32_t Time = 0; 
+uint32_t lastKeyTime = 0; 
+uint8_t keyFlag = 0; 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -104,12 +104,12 @@ int main(void)
     if(keyFlag==1)
     {
         keyFlag = 0; 
-        if((msCnt - lastKeyTime) > 20) 
+        if((Time - lastKeyTime) > 20) 
         {
-          if(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin) == GPIO_PIN_RESET) 
+          if(HAL_GPIO_ReadPin(GPIOA, KEY_Pin) == GPIO_PIN_RESET) 
           {
-            HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); 
-            lastKeyTime = msCnt; 
+            HAL_GPIO_TogglePin(GPIOA, LED_Pin); 
+            lastKeyTime = Time; 
           }
         }
     }
@@ -159,16 +159,16 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-    if(GPIO_Pin == KEY_Pin) // Check if the interrupt is from the key pin
+    if(GPIO_Pin == KEY_Pin) 
     {
-        keyFlag = 1; // Set the key press flag
+        keyFlag = 1; 
     }
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM2) 
     {
-        msCnt++; 
+        Time++; 
     }
 }
 /* USER CODE END 4 */
