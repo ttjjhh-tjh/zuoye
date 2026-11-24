@@ -6,6 +6,7 @@
 位置：1-1/Core/Src/main.c 的 while(1) 内
 操作；通过HAL_Delay(500) 阻塞延时
 现象；实现亮 500ms、灭 500ms（周期 1s）
+
 1-2 LED 500ms 闪烁（TIM2 时基，非阻塞）
 位置；1-2/Core/Src/main.c 的 main函数前，while(1)内，main函数后
 操作；Cubemax配置时基TIM2(PSC=71,ARR=999) 通过中断里 Time++计时，同时主循环比较 Time - last >= 500够了翻转电平并更新last
